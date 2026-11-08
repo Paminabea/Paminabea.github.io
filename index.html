@@ -2,66 +2,915 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Мои проекты | Paminabea</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com;
+        style-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdn.jsdelivr.net;
+        font-src 'self' https://cdn.jsdelivr.net;
+        img-src 'self' data: https:;
+        connect-src 'self';
+        frame-ancestors 'none';
+        base-uri 'self';
+        form-action 'self';
+    ">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
+    <meta name="robots" content="index, follow">
+
+    <title>Pamina Bea — Портфолио проектов</title>
+    <meta name="description" content="Персональное портфолио проектов Pamina Bea. Веб-разработка, дизайн и креативные решения.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fontsource Fonts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-400-normal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-600-normal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-700-normal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/jetbrains-mono@latest/latin-400-normal.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f0ff',
+                            100: '#e0e0ff',
+                            200: '#c4b5fd',
+                            300: '#a78bfa',
+                            400: '#8b5cf6',
+                            500: '#7c3aed',
+                            600: '#6d28d9',
+                            700: '#5b21b6',
+                            800: '#4c1d95',
+                            900: '#2e1065',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out 2s infinite',
+                        'float-slow': 'float 8s ease-in-out 1s infinite',
+                        'pulse-soft': 'pulseSoft 4s ease-in-out infinite',
+                        'gradient': 'gradient 8s ease infinite',
+                        'fade-up': 'fadeUp 0.8s ease-out forwards',
+                        'fade-up-delayed': 'fadeUp 0.8s ease-out 0.2s forwards',
+                        'fade-up-delayed-2': 'fadeUp 0.8s ease-out 0.4s forwards',
+                        'fade-up-delayed-3': 'fadeUp 0.8s ease-out 0.6s forwards',
+                        'scale-in': 'scaleIn 0.6s ease-out 0.3s forwards',
+                        'slide-in-left': 'slideInLeft 0.8s ease-out 0.5s forwards',
+                        'slide-in-right': 'slideInRight 0.8s ease-out 0.7s forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-20px) rotate(3deg)' },
+                        },
+                        pulseSoft: {
+                            '0%, 100%': { opacity: '0.4' },
+                            '50%': { opacity: '0.8' },
+                        },
+                        gradient: {
+                            '0%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                            '100%': { backgroundPosition: '0% 50%' },
+                        },
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        scaleIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.8)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' },
+                        },
+                        slideInLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(-50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        slideInRight: {
+                            '0%': { opacity: '0', transform: 'translateX(50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f9; color: #333; max-width: 800px; margin: 40px auto; padding: 20px; }
-        h1 { text-align: center; }
-        .section { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; }
-        .project { margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee; }
-        .project:last-child { border-bottom: none; }
-        .btn { display: inline-block; padding: 8px 12px; background: #0366d6; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; }
-        .btn:hover { background: #024ea4; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: #0a0a0f;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+
+        /* Initial state for animated elements */
+        .animate-fade-up,
+        .animate-fade-up-delayed,
+        .animate-fade-up-delayed-2,
+        .animate-fade-up-delayed-3,
+        .animate-scale-in,
+        .animate-slide-in-left,
+        .animate-slide-in-right {
+            opacity: 0;
+        }
+
+        /* Animated gradient background */
+        .gradient-bg {
+            background: linear-gradient(-45deg, #0a0a0f, #1a0533, #0f172a, #0a0a0f, #1e1b4b);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glow effects */
+        .glow-purple {
+            box-shadow: 0 0 40px rgba(139, 92, 246, 0.15), 0 0 80px rgba(139, 92, 246, 0.05);
+        }
+
+        .glow-text {
+            text-shadow: 0 0 40px rgba(139, 92, 246, 0.5), 0 0 80px rgba(139, 92, 246, 0.2);
+        }
+
+        /* Glass morphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(139, 92, 246, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.1);
+        }
+
+        /* Floating orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+        }
+
+        /* Grid pattern overlay */
+        .grid-pattern {
+            background-image:
+                linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        /* Noise texture */
+        .noise::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.015;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            z-index: 9999;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0a0f; }
+        ::-webkit-scrollbar-thumb { background: #7c3aed; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #8b5cf6; }
+
+        /* Cursor glow effect */
+        .cursor-glow {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.3s;
+        }
+
+        /* Project card shimmer */
+        .shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.05), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* Typing cursor */
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1em;
+            background: #8b5cf6;
+            margin-left: 4px;
+            animation: blink 1s step-end infinite;
+            vertical-align: text-bottom;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Status indicator */
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+            50% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+        }
+
+        /* Link hover effect */
+        .link-hover {
+            position: relative;
+            display: inline-block;
+        }
+
+        .link-hover::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #8b5cf6;
+            transition: width 0.3s ease;
+        }
+
+        .link-hover:hover::after {
+            width: 100%;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .orb { filter: blur(60px); }
+        }
+
+        /* Selection color */
+        ::selection {
+            background: rgba(139, 92, 246, 0.3);
+            color: #fff;
+        }
+
+        /* Button styles */
+        .btn-primary {
+            background: linear-gradient(135deg, #7c3aed, #6d28d9);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(124, 58, 237, 0.3);
+        }
+
+        .btn-ghost {
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-ghost:hover {
+            border-color: rgba(139, 92, 246, 0.6);
+            background: rgba(139, 92, 246, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Section divider */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.2), transparent);
+        }
+
+        /* Tag styles */
+        .tag {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: rgba(139, 92, 246, 0.2);
+            border-color: rgba(139, 92, 246, 0.4);
+        }
     </style>
 </head>
-<body>
+<body class="noise gradient-bg min-h-screen">
 
-    <h1>Привет! Это мои проекты</h1>
+    <!-- Cursor Glow Effect -->
+    <div class="cursor-glow hidden lg:block" id="cursorGlow"></div>
 
-    <div class="section">
-        <h2>🐍 Чат-боты на Python</h2>
-        
-        <div class="project">
-            <h3>Чат-бот №1</h3>
-            <p>Описание первого бота.</p>
-            <!-- Замените ссылку ниже на ссылку вашего репозитория с ботом -->
-            <a href="#" class="btn">Посмотреть код</a>
-        </div>
-
-        <div class="project">
-            <h3>Чат-бот №2</h3>
-            <p>Описание второго бота.</p>
-            <a href="#" class="btn">Посмотреть код</a>
-        </div>
-
-        <div class="project">
-            <h3>Чат-бот №3</h3>
-            <p>Описание третьего бота.</p>
-            <a href="#" class="btn">Посмотреть код</a>
-        </div>
+    <!-- Background Orbs -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <div class="orb w-96 h-96 bg-brand-600/20 top-[-10%] left-[-5%] animate-float"></div>
+        <div class="orb w-80 h-80 bg-brand-400/10 top-[40%] right-[-10%] animate-float-delayed"></div>
+        <div class="orb w-64 h-64 bg-indigo-600/15 bottom-[-5%] left-[30%] animate-float-slow"></div>
+        <div class="orb w-48 h-48 bg-purple-500/10 top-[20%] left-[50%] animate-float-delayed"></div>
     </div>
 
-    <div class="section">
-        <h2>📱 Приложения для Android (APK)</h2>
-        
-        <div class="project">
-            <h3>Приложение №1</h3>
-            <p>Описание первого приложения.</p>
-            <!-- Замените ссылку ниже на ссылку из раздела Releases -->
-            <a href="#" class="btn">Скачать APK</a>
-        </div>
+    <!-- Grid Pattern Overlay -->
+    <div class="fixed inset-0 grid-pattern pointer-events-none" aria-hidden="true"></div>
 
-        <div class="project">
-            <h3>Приложение №2</h3>
-            <p>Описание второго приложения.</p>
-            <a href="#" class="btn">Скачать APK</a>
-        </div>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass" role="navigation" aria-label="Главная навигация">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group" aria-label="На главную">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center text-white font-bold text-lg group-hover:scale-110 transition-transform duration-300">
+                    P
+                </div>
+                <span class="text-lg font-semibold text-white/90 group-hover:text-white transition-colors">
+                    paminabea
+                </span>
+            </a>
 
-        <div class="project">
-            <h3>Приложение №3</h3>
-            <p>Описание третьего приложения.</p>
-            <a href="#" class="btn">Скачать APK</a>
+            <!-- Nav Links -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#projects" class="text-sm text-white/50 hover:text-white/90 transition-colors duration-300 link-hover">Проекты</a>
+                <a href="#about" class="text-sm text-white/50 hover:text-white/90 transition-colors duration-300 link-hover">Обо мне</a>
+                <a href="#contact" class="text-sm text-white/50 hover:text-white/90 transition-colors duration-300 link-hover">Контакты</a>
+            </div>
+
+            <!-- Status Badge -->
+            <div class="flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs text-white/50">
+                <span class="status-dot"></span>
+                <span class="hidden sm:inline">Открыт для проектов</span>
+                <span class="sm:hidden">Online</span>
+            </div>
         </div>
-    </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="relative z-10">
+
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center justify-center px-6 pt-20" id="hero">
+            <div class="max-w-4xl mx-auto text-center">
+
+                <!-- Greeting -->
+                <div class="animate-fade-up mb-6">
+                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-brand-300 font-mono">
+                        <span class="text-brand-400">&#47;&#47;</span> привет, мир
+                    </span>
+                </div>
+
+                <!-- Main Heading -->
+                <h1 class="animate-fade-up-delayed text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6">
+                    <span class="text-white/90">Создаю</span>
+                    <br>
+                    <span class="bg-gradient-to-r from-brand-300 via-brand-400 to-indigo-400 bg-clip-text text-transparent glow-text">
+                        цифровые миры
+                    </span>
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="animate-fade-up-delayed-2 text-lg sm:text-xl text-white/40 max-w-2xl mx-auto mb-10 leading-relaxed">
+                    Здесь собираются мои проекты — от веб-приложений до креативных экспериментов.
+                    Каждый проект — это маленькая история, рассказанная через код и дизайн.
+                </p>
+
+                <!-- CTA Buttons -->
+                <div class="animate-fade-up-delayed-3 flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#projects" class="btn-primary px-8 py-3.5 rounded-xl text-white font-medium text-sm tracking-wide">
+                        Смотреть проекты
+                    </a>
+                    <a href="#contact" class="btn-ghost px-8 py-3.5 rounded-xl text-white/70 font-medium text-sm tracking-wide">
+                        Связаться со мной
+                    </a>
+                </div>
+
+                <!-- Scroll Indicator -->
+                <div class="animate-fade-up-delayed-3 mt-20 flex flex-col items-center gap-2 text-white/20">
+                    <span class="text-xs font-mono tracking-widest uppercase">Scroll</span>
+                    <div class="w-px h-12 bg-gradient-to-b from-white/20 to-transparent animate-pulse-soft"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Divider -->
+        <div class="section-divider max-w-4xl mx-auto"></div>
+
+        <!-- Projects Section -->
+        <section class="py-24 px-6" id="projects">
+            <div class="max-w-6xl mx-auto">
+
+                <!-- Section Header -->
+                <div class="text-center mb-16">
+                    <span class="font-mono text-sm text-brand-400 mb-4 block">01 / проекты</span>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white/90 mb-4">
+                        Мои работы
+                    </h2>
+                    <p class="text-white/40 max-w-lg mx-auto">
+                        Подборка проектов, над которыми я работаю. Новые проекты добавляются регулярно.
+                    </p>
+                </div>
+
+                <!-- Project Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                    <!-- Project Card 1 -->
+                    <article class="glass-card rounded-2xl p-6 shimmer group">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-brand-500/10 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                                </svg>
+                            </div>
+                            <span class="tag px-3 py-1 rounded-full text-xs text-brand-300 font-mono">В разработке</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-white/90 mb-2 group-hover:text-brand-300 transition-colors">
+                            Проект 01
+                        </h3>
+                        <p class="text-sm text-white/40 mb-4 leading-relaxed">
+                            Описание первого проекта. Замените этот текст на описание вашего проекта.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag px-2.5 py-1 rounded-md text-xs text-white/50">HTML</span>
+                            <span class="tag px-2.5 py-1 rounded-md text-xs text-white/50">CSS</span>
+                            <span class="tag px-2.5 py-1 rounded-md text-xs text-white/50">JavaScript</span>
+                        </div>
+                    </article>
+
+                    <!-- Project Card 2 -->
+                    <article class="glass-card rounded-2xl p-6 shimmer group">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
+                                </svg>
+                            </div>
+                            <span class="tag px-3 py-1 rounded-full text-xs text-brand-300 font-mono">В разработке</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-white/90 mb-2 group-hover:text-indigo-300 transition-colors">
+                            Проект 02
+                        </h3>
+                        <p class="text-sm text-white/40 mb-4 leading-relaxed">
+                            Описание второго проекта. Замените этот текст на описание вашего проекта.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag px-2.5 py-1 rounded-md text-xs text-white/50">React</span>
+                            <span class="tag px-2.5 py-1 rounded-md text-xs text-white/50">TypeScript</span>
+                        </div>
+                    </article>
+
+                    <!-- Project Card 3 -->
+                    <article class="glass-card rounded-2xl p-6 shimmer group">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+                                </svg>
+                            </div>
+                            <span class="tag px-3 py-1 rounded-full text-xs text-brand-300 font-mono">В разработке</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-white/90 mb-2 group-hover:text-purple-300 transition-colors">
+                            Проект 03
+                        </h3>
+                        <p class="text-sm text-white/40 mb-4 leading-relaxed">
+                            Описание третьего проекта. Замените этот текст на описание вашего проекта.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag px-2.5 py-1 rounded-md text-xs text-white/50">Python</span>
+                            <span class="tag px-2.5 py-1 rounded-md text-xs text-white/50">API</span>
+                            <span class="tag px-2.5 py-1 rounded-md text-xs text-white/50">Design</span>
+                        </div>
+                    </article>
+
+                    <!-- Project Card 4 - Placeholder -->
+                    <article class="glass-card rounded-2xl p-6 group border-dashed !border-white/10 flex flex-col items-center justify-center text-center min-h-[220px]">
+                        <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-4 group-hover:bg-brand-500/10 transition-colors">
+                            <svg class="w-6 h-6 text-white/30 group-hover:text-brand-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"/>
+                            </svg>
+                        </div>
+                        <p class="text-sm text-white/30 group-hover:text-white/50 transition-colors">
+                            Скоро будет новый проект...
+                        </p>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Divider -->
+        <div class="section-divider max-w-4xl mx-auto"></div>
+
+        <!-- About Section -->
+        <section class="py-24 px-6" id="about">
+            <div class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+
+                    <!-- Left: Text -->
+                    <div>
+                        <span class="font-mono text-sm text-brand-400 mb-4 block">02 / обо мне</span>
+                        <h2 class="text-3xl sm:text-4xl font-bold text-white/90 mb-6">
+                            Немного о себе
+                        </h2>
+                        <p class="text-white/40 leading-relaxed mb-4">
+                            Привет! Я — <span class="text-white/70 font-medium">Pamina Bea</span>. Увлекаюсь веб-разработкой, дизайном и созданием интересных цифровых решений.
+                        </p>
+                        <p class="text-white/40 leading-relaxed mb-6">
+                            Этот сайт — моя витрина, где я собираю свои проекты и эксперименты. Каждый проект — это шаг вперёд в освоении новых технологий.
+                        </p>
+
+                        <!-- Skills -->
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag px-3 py-1.5 rounded-lg text-xs text-white/60 font-mono">HTML/CSS</span>
+                            <span class="tag px-3 py-1.5 rounded-lg text-xs text-white/60 font-mono">JavaScript</span>
+                            <span class="tag px-3 py-1.5 rounded-lg text-xs text-white/60 font-mono">React</span>
+                            <span class="tag px-3 py-1.5 rounded-lg text-xs text-white/60 font-mono">Design</span>
+                            <span class="tag px-3 py-1.5 rounded-lg text-xs text-white/60 font-mono">Python</span>
+                        </div>
+                    </div>
+
+                    <!-- Right: Stats / Info Card -->
+                    <div class="glass-card rounded-2xl p-8">
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-brand-500/10 flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-5 h-5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-white/30 font-mono uppercase tracking-wider">Локация</p>
+                                    <p class="text-sm text-white/70">Ваш город, Страна</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-white/30 font-mono uppercase tracking-wider">Деятельность</p>
+                                    <p class="text-sm text-white/70">Веб-разработка & Дизайн</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-white/30 font-mono uppercase tracking-wider">Интересы</p>
+                                    <p class="text-sm text-white/70">UI/UX, Анимации, Open Source</p>
+                                </div>
+                            </div>
+
+                            <div class="pt-4 border-t border-white/5">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs text-white/30 font-mono">Проектов завершено</span>
+                                    <span class="text-2xl font-bold text-brand-400" id="projectCount">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Divider -->
+        <div class="section-divider max-w-4xl mx-auto"></div>
+
+        <!-- Contact Section -->
+        <section class="py-24 px-6" id="contact">
+            <div class="max-w-2xl mx-auto text-center">
+                <span class="font-mono text-sm text-brand-400 mb-4 block">03 / контакты</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white/90 mb-4">
+                    Давайте работать вместе
+                </h2>
+                <p class="text-white/40 mb-10 max-w-md mx-auto">
+                    Есть идея для проекта или хотите сотрудничать? Напишите мне, и мы обсудим детали.
+                </p>
+
+                <!-- Contact Links -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+                    <a href="mailto:your-email@example.com" class="btn-primary px-8 py-3.5 rounded-xl text-white font-medium text-sm tracking-wide inline-flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                        Написать письмо
+                    </a>
+                    <a href="https://github.com/paminabea" target="_blank" rel="noopener noreferrer" class="btn-ghost px-8 py-3.5 rounded-xl text-white/70 font-medium text-sm tracking-wide inline-flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        GitHub
+                    </a>
+                </div>
+
+                <!-- Social Links -->
+                <div class="flex items-center justify-center gap-6">
+                    <a href="#" class="text-white/20 hover:text-brand-400 transition-colors duration-300" aria-label="Telegram">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-1.09.49-1.63.46-.59-.017-1.735-.335-2.592-.661-1.062-.404-1.906-.618-1.836-1.22.036-.314.476-.634 1.316-.946 5.18-2.064 8.634-3.472 10.348-4.148.962-.358 2.86-.98 3.43-.98z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-white/20 hover:text-brand-400 transition-colors duration-300" aria-label="Twitter">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-white/20 hover:text-brand-400 transition-colors duration-300" aria-label="LinkedIn">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-white/20 hover:text-brand-400 transition-colors duration-300" aria-label="Dribbble">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 24C5.385 24 0 18.615 0 12S5.385 0 12 0s12 5.385 12 12-5.385 12-12 12zm10.12-10.358c-.35-.11-3.17-.953-6.384-.438 1.34 3.684 1.887 6.684 1.992 7.308 2.3-1.555 3.936-4.02 4.395-6.87zm-6.115 7.808c-.153-.9-.75-4.032-2.19-7.77l-.066.02c-5.79 2.015-7.86 6.025-8.04 6.4 1.73 1.358 3.92 2.166 6.29 2.166 1.42 0 2.77-.29 4-.816zm-11.62-2.58c.232-.4 3.045-5.055 8.332-6.765.135-.045.27-.084.405-.12-.26-.585-.54-1.167-.832-1.74C7.17 11.775 2.206 11.71 1.756 11.7l-.004.312c0 2.633.998 5.037 2.634 6.855zm-2.42-8.955c.46.008 4.683.026 9.477-1.248-1.698-3.018-3.53-5.558-3.8-5.928-2.868 1.35-5.01 3.99-5.676 7.17zm7.56-7.872c.282.394 2.145 2.906 3.822 6 3.645-1.365 5.19-3.44 5.373-3.702-1.81-1.61-4.19-2.586-6.795-2.586-.825 0-1.63.1-2.4.29zm10.868 3.702c-.215.285-1.91 2.497-5.72 4.04.24.49.47.985.68 1.486.08.18.15.36.22.53 3.41-.43 6.8.26 7.14.33-.02-2.42-.88-4.64-2.32-6.38z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 border-t border-white/5">
+        <div class="max-w-6xl mx-auto px-6 py-8">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center text-white font-bold text-sm">
+                        P
+                    </div>
+                    <span class="text-sm text-white/30">
+                        &copy; <span id="currentYear"></span> Pamina Bea. Все права защищены.
+                    </span>
+                </div>
+                <div class="flex items-center gap-4 text-xs text-white/20 font-mono">
+                    <span>v1.0.0</span>
+                    <span class="hidden sm:inline">•</span>
+                    <span class="hidden sm:inline">Сделано с ❤️ и кодом</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        'use strict';
+
+        // ===== Security: Prevent common attacks =====
+        (function() {
+            // Disable right-click context menu (basic protection)
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+            });
+
+            // Prevent drag of images
+            document.addEventListener('dragstart', function(e) {
+                e.preventDefault();
+            });
+
+            // Detect dev tools (basic)
+            let devToolsOpen = false;
+            const threshold = 160;
+            setInterval(function() {
+                const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+                const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+                if (widthThreshold || heightThreshold) {
+                    if (!devToolsOpen) {
+                        devToolsOpen = true;
+                        console.clear();
+                        console.log('%c⚠️ Внимание!', 'color: #8b5cf6; font-size: 24px; font-weight: bold;');
+                        console.log('%cНе вставляйте сюда код — это может быть опасно.', 'color: #ef4444; font-size: 14px;');
+                    }
+                } else {
+                    devToolsOpen = false;
+                }
+            }, 1000);
+
+            // Prevent text selection on sensitive areas (optional)
+            // document.addEventListener('selectstart', function(e) { e.preventDefault(); });
+
+            // Anti-clickjacking: break out of frames
+            if (window.top !== window.self) {
+                window.top.location = window.self.location;
+            }
+
+            // Sanitize URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            for (const [key, value] of urlParams) {
+                if (/<script|javascript:|on\w+\s*=/i.test(value)) {
+                    window.history.replaceState({}, '', window.location.pathname);
+                    break;
+                }
+            }
+        })();
+
+        // ===== Cursor Glow Effect =====
+        (function() {
+            const glow = document.getElementById('cursorGlow');
+            if (!glow) return;
+
+            let mouseX = 0, mouseY = 0;
+            let glowX = 0, glowY = 0;
+
+            document.addEventListener('mousemove', function(e) {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            function animateGlow() {
+                glowX += (mouseX - glowX) * 0.1;
+                glowY += (mouseY - glowY) * 0.1;
+                glow.style.left = glowX + 'px';
+                glow.style.top = glowY + 'px';
+                requestAnimationFrame(animateGlow);
+            }
+            animateGlow();
+        })();
+
+        // ===== Smooth Scroll for Anchor Links =====
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // ===== Intersection Observer for Scroll Animations =====
+        (function() {
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+            document.querySelectorAll('.glass-card').forEach(function(card) {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        })();
+
+        // ===== Counter Animation =====
+        (function() {
+            const counter = document.getElementById('projectCount');
+            if (!counter) return;
+
+            let counted = false;
+            const observer = new IntersectionObserver(function(entries) {
+                if (entries[0].isIntersecting && !counted) {
+                    counted = true;
+                    let current = 0;
+                    const target = 3; // Change this to your actual project count
+                    const duration = 1500;
+                    const step = duration / target;
+
+                    const interval = setInterval(function() {
+                        current++;
+                        counter.textContent = current;
+                        if (current >= target) {
+                            clearInterval(interval);
+                        }
+                    }, step);
+                }
+            }, { threshold: 0.5 });
+
+            observer.observe(counter);
+        })();
+
+        // ===== Dynamic Year =====
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // ===== Navbar Background on Scroll =====
+        (function() {
+            const nav = document.querySelector('nav');
+            if (!nav) return;
+
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    nav.style.background = 'rgba(10, 10, 15, 0.8)';
+                    nav.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+                } else {
+                    nav.style.background = 'rgba(255, 255, 255, 0.03)';
+                    nav.style.borderBottom = '1px solid rgba(255,255,255,0.06)';
+                }
+            });
+        })();
+
+        // ===== Keyboard Navigation =====
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-nav');
+            }
+        });
+
+        document.addEventListener('mousedown', function() {
+            document.body.classList.remove('keyboard-nav');
+        });
+
+        // ===== Performance: Reduce animations for users who prefer it =====
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.querySelectorAll('[class*="animate-"]').forEach(function(el) {
+                el.style.animation = 'none';
+                el.style.opacity = '1';
+                el.style.transform = 'none';
+            });
+        }
+
+        // ===== Console Easter Egg =====
+        console.log(
+            '%c👋 Привет, разработчик!',
+            'color: #8b5cf6; font-size: 18px; font-weight: bold;'
+        );
+        console.log(
+            '%cИнтересно, что ты заглянул сюда. Может, стоит связаться? 😊',
+            'color: #a78bfa; font-size: 12px;'
+        );
+    </script>
 
 </body>
 </html>
