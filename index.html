@@ -3,352 +3,631 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Сергей (Paminabea) — AI-assisted разработчик</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self';
+        script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com;
+        style-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdn.jsdelivr.net;
+        font-src 'self' https://cdn.jsdelivr.net;
+        img-src 'self' data: https:;
+        connect-src 'self';
+        frame-ancestors 'none';
+        base-uri 'self';
+        form-action 'self';
+    ">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
+    <meta name="robots" content="index, follow">
+
+    <title>Paminabea — Вайбкодер и создатель ИИ-продуктов</title>
+    <meta name="description" content="Портфолио вайбкодера из России. Создаю ИИ-ботов и Android-приложения с помощью нейросетей.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fontsource Fonts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-400-normal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-600-normal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-700-normal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/fonts/jetbrains-mono@latest/latin-400-normal.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f0ff',
+                            100: '#e0e0ff',
+                            200: '#c4b5fd',
+                            300: '#a78bfa',
+                            400: '#8b5cf6',
+                            500: '#7c3aed',
+                            600: '#6d28d9',
+                            700: '#5b21b6',
+                            800: '#4c1d95',
+                            900: '#2e1065',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out 2s infinite',
+                        'float-slow': 'float 8s ease-in-out 1s infinite',
+                        'pulse-soft': 'pulseSoft 4s ease-in-out infinite',
+                        'gradient': 'gradient 8s ease infinite',
+                        'fade-up': 'fadeUp 0.8s ease-out forwards',
+                        'fade-up-delayed': 'fadeUp 0.8s ease-out 0.2s forwards',
+                        'fade-up-delayed-2': 'fadeUp 0.8s ease-out 0.4s forwards',
+                        'fade-up-delayed-3': 'fadeUp 0.8s ease-out 0.6s forwards',
+                        'scale-in': 'scaleIn 0.6s ease-out 0.3s forwards',
+                        'slide-in-left': 'slideInLeft 0.8s ease-out 0.5s forwards',
+                        'slide-in-right': 'slideInRight 0.8s ease-out 0.7s forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-20px) rotate(3deg)' },
+                        },
+                        pulseSoft: {
+                            '0%, 100%': { opacity: '0.4' },
+                            '50%': { opacity: '0.8' },
+                        },
+                        gradient: {
+                            '0%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                            '100%': { backgroundPosition: '0% 50%' },
+                        },
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        scaleIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.8)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' },
+                        },
+                        slideInLeft: {
+                            '0%': { opacity: '0', transform: 'translateX(-50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                        slideInRight: {
+                            '0%': { opacity: '0', transform: 'translateX(50px)' },
+                            '100%': { opacity: '1', transform: 'translateX(0)' },
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
-        
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
-            line-height: 1.6;
-            min-height: 100vh;
+            font-family: 'Inter', system-ui, sans-serif;
+            background: #0a0a0f;
+            color: #e2e8f0;
+            overflow-x: hidden;
         }
-        
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 20px;
+
+        /* Initial state for animated elements */
+        .animate-fade-up,
+        .animate-fade-up-delayed,
+        .animate-fade-up-delayed-2,
+        .animate-fade-up-delayed-3,
+        .animate-scale-in,
+        .animate-slide-in-left,
+        .animate-slide-in-right {
+            opacity: 0;
         }
-        
-        /* Header */
-        header {
-            text-align: center;
-            padding: 60px 20px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            margin-bottom: 40px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+
+        /* Animated gradient background */
+        .gradient-bg {
+            background: linear-gradient(-45deg, #0a0a0f, #1a0533, #0f172a, #0a0a0f, #1e1b4b);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
         }
-        
-        .avatar {
-            width: 150px;
-            height: 150px;
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glow effects */
+        .glow-purple {
+            box-shadow: 0 0 40px rgba(139, 92, 246, 0.15), 0 0 80px rgba(139, 92, 246, 0.05);
+        }
+
+        .glow-text {
+            text-shadow: 0 0 40px rgba(139, 92, 246, 0.5), 0 0 80px rgba(139, 92, 246, 0.2);
+        }
+
+        /* Glass morphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(139, 92, 246, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.1);
+        }
+
+        /* Floating orbs */
+        .orb {
+            position: absolute;
             border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 80px;
-            color: white;
-            font-weight: bold;
+            filter: blur(80px);
+            pointer-events: none;
         }
-        
-        h1 {
-            color: #667eea;
-            margin-bottom: 10px;
-            font-size: 2.5em;
+
+        /* Grid pattern overlay */
+        .grid-pattern {
+            background-image:
+                linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
         }
-        
-        .tagline {
-            color: #666;
-            font-size: 1.2em;
-            margin-bottom: 20px;
+
+        /* Noise texture */
+        .noise::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.015;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            z-index: 9999;
         }
-        
-        .status {
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0a0f; }
+        ::-webkit-scrollbar-thumb { background: #7c3aed; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #8b5cf6; }
+
+        /* Cursor glow effect */
+        .cursor-glow {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.3s;
+        }
+
+        /* Project card shimmer */
+        .shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.05), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* Typing cursor */
+        .typing-cursor {
             display: inline-block;
-            background: #10b981;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            margin-top: 10px;
+            width: 3px;
+            height: 1em;
+            background: #8b5cf6;
+            margin-left: 4px;
+            animation: blink 1s step-end infinite;
+            vertical-align: text-bottom;
         }
-        
-        /* Sections */
-        section {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
-        
-        h2 {
-            color: #764ba2;
-            margin-bottom: 20px;
-            font-size: 2em;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 10px;
-        }
-        
-        /* Projects Grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
-        }
-        
-        .project-card {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 25px;
-            border-left: 5px solid #667eea;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-        
-        .project-card h3 {
-            color: #667eea;
-            margin-bottom: 10px;
-            font-size: 1.5em;
-        }
-        
-        .project-card p {
-            color: #666;
-            margin-bottom: 15px;
-        }
-        
-        .badge {
+
+        /* Status indicator */
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
             display: inline-block;
-            background: #667eea;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-size: 0.85em;
-            margin-right: 5px;
-            margin-bottom: 5px;
+            animation: pulse 2s ease-in-out infinite;
         }
-        
-        .btn {
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+            50% { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+        }
+
+        /* Link hover effect */
+        .link-hover {
+            position: relative;
             display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 10px 25px;
-            border-radius: 8px;
-            text-decoration: none;
-            margin-top: 15px;
-            transition: transform 0.2s;
-            font-weight: 500;
         }
-        
-        .btn:hover {
-            transform: scale(1.05);
+
+        .link-hover::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #8b5cf6;
+            transition: width 0.3s ease;
         }
-        
-        .btn-secondary {
-            background: #6c757d;
-            margin-left: 10px;
+
+        .link-hover:hover::after {
+            width: 100%;
         }
-        
-        /* Skills */
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .orb { filter: blur(60px); }
         }
-        
-        .skill {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 8px;
-            font-weight: 500;
+
+        /* Selection color */
+        ::selection {
+            background: rgba(139, 92, 246, 0.3);
+            color: #fff;
         }
-        
-        /* Contact */
-        .contact-links {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 20px;
+
+        /* Button styles */
+        .btn-primary {
+            background: linear-gradient(135deg, #7c3aed, #6d28d9);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-        
-        .contact-link {
-            flex: 1;
-            min-width: 200px;
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            text-decoration: none;
-            color: #667eea;
-            font-weight: 500;
-            transition: transform 0.2s;
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s ease;
         }
-        
-        .contact-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+
+        .btn-primary:hover::before {
+            left: 100%;
         }
-        
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: white;
-            margin-top: 40px;
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(124, 58, 237, 0.3);
         }
-        
-        footer a {
-            color: white;
-            text-decoration: underline;
+
+        .btn-ghost {
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            transition: all 0.3s ease;
         }
-        
-        @media (max-width: 600px) {
-            h1 { font-size: 2em; }
-            h2 { font-size: 1.5em; }
-            .projects-grid { grid-template-columns: 1fr; }
+
+        .btn-ghost:hover {
+            border-color: rgba(139, 92, 246, 0.6);
+            background: rgba(139, 92, 246, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Section divider */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.2), transparent);
+        }
+
+        /* Tag styles */
+        .tag {
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: rgba(139, 92, 246, 0.2);
+            border-color: rgba(139, 92, 246, 0.4);
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <div class="avatar">👨‍💻</div>
-            <h1>Сергей (Paminabea)</h1>
-            <div class="tagline">AI-assisted разработчик | Создаю приложения и ботов с помощью ИИ</div>
-            <span class="status">🟢 Открыт для проектов</span>
-        </header>
-        
-        <!-- Projects -->
-        <section id="projects">
-            <h2> Мои проекты</h2>
-            <p style="margin-bottom: 20px; color: #666;">Здесь собраны мои последние работы — от мобильных приложений до Telegram-ботов.</p>
-            
-            <div class="projects-grid">
-                
-                <!-- RetroCamV8 -->
-                <div class="project-card">
-                    <h3>📸 RetroCamV8</h3>
-                    <p>Профессиональное приложение для создания атмосферных фотографий в стиле ретро и винтаж. Плёночные фильтры, объективы Индустар и Гелиос, редактор с зернистостью и утечками света.</p>
-                    <div>
-                        <span class="badge">Android</span>
-                        <span class="badge">HTML5</span>
-                        <span class="badge">JavaScript</span>
-                        <span class="badge">APK</span>
-                    </div>
-                    <a href="https://github.com/Paminabea/retrocam-app/releases/download/v1.0.0/RetroCamera.apk" class="btn">📥 Скачать APK</a>
-                    <a href="https://github.com/Paminabea/retrocam-app" class="btn btn-secondary">GitHub</a>
-                </div>
-                
-                <!-- Starshift -->
-                <div class="project-card">
-                    <h3> Starshift</h3>
-                    <p>Космическая аркада с пиксельной эволюцией. Развивайся от простого корабля до галактического флота, исследуй вселенную и сражайся с врагами.</p>
-                    <div>
-                        <span class="badge">HTML5</span>
-                        <span class="badge">Canvas</span>
-                        <span class="badge">Game</span>
-                    </div>
-                    <a href="#" class="btn"> Скачать APK</a>
-                    <a href="#" class="btn btn-secondary">GitHub</a>
-                </div>
-                
-                <!-- Планировщик -->
-                <div class="project-card">
-                    <h3>📅 Планировщик</h3>
-                    <p>Мощный органайзер с календарём, заметками, аудио-заметками, трекером привычек и калькулятором. Всё для продуктивной жизни в одном приложении.</p>
-                    <div>
-                        <span class="badge">HTML5</span>
-                        <span class="badge">Productivity</span>
-                    </div>
-                    <a href="#" class="btn">📥 Скачать APK</a>
-                    <a href="#" class="btn btn-secondary">GitHub</a>
-                </div>
-                
-                <!-- Telegram Bot -->
-                <div class="project-card">
-                    <h3>🤖 Telegram AiRu Bot</h3>
-                    <p>Многофункциональный бот с интеграцией ИИ (Groq/OpenRouter), админ-панелью, системой заказов и фоновыми задачами. Автоматизация бизнес-процессов.</p>
-                    <div>
-                        <span class="badge">Python</span>
-                        <span class="badge">aiogram</span>
-                        <span class="badge">AI</span>
-                    </div>
-                    <a href="https://github.com/Paminabea/tg" class="btn">GitHub</a>
-                </div>
-                
-            </div>
-        </section>
-        
-        <!-- About -->
-        <section id="about">
-            <h2>👨💻 Обо мне</h2>
-            <p style="margin-bottom: 15px;">
-                Привет! Я <strong>Сергей из Москвы</strong>. Self-taught разработчик, который создаёт мобильные приложения и Telegram-ботов с использованием современных AI-инструментов.
-            </p>
-            <p style="margin-bottom: 15px;">
-                Я верю, что <strong>ИИ — это не замена разработчику, а мощный инструмент</strong>, который позволяет работать в 10 раз эффективнее. Я активно использую Groq, OpenRouter, Continue и другие инструменты для ускорения разработки.
-            </p>
-            <p style="margin-bottom: 20px;">
-                <strong>Ищу полностью удалённую работу</strong>, где смогу применять свои навыки и развиваться как разработчик.
-            </p>
-            
-            <h3 style="margin-top: 30px; color: #764ba2; margin-bottom: 15px;">🛠 Мой стек технологий:</h3>
-            <div class="skills">
-                <span class="skill">Python</span>
-                <span class="skill">JavaScript</span>
-                <span class="skill">HTML5/CSS</span>
-                <span class="skill">Telegram Bot API</span>
-                <span class="skill">Git</span>
-                <span class="skill">Linux (Lubuntu)</span>
-                <span class="skill">AI Integration</span>
-                <span class="skill">Groq API</span>
-                <span class="skill">OpenRouter</span>
-                <span class="skill">Capacitor</span>
-            </div>
-            
-            <div style="margin-top: 30px; padding-top: 20px; border-top: 2px solid #eee;">
-                <p><strong>📍 Локация:</strong> Москва, Россия</p>
-                <p><strong>💼 Деятельность:</strong> Мобильная разработка & Telegram-боты</p>
-                <p><strong>🎯 Интересы:</strong> AI-assisted development, Open Source, Automation</p>
-            </div>
-        </section>
-        
-        <!-- Contact -->
-        <section id="contact">
-            <h2> Контакты</h2>
-            <p style="margin-bottom: 20px;">Есть идея для проекта или хотите сотрудничать? Напишите мне!</p>
-            
-            <div class="contact-links">
-                <a href="mailto:paminabea@gmail.com" class="contact-link">
-                    📧 paminabea@gmail.com
-                </a>
-                <a href="https://t.me/paminabea" class="contact-link">
-                    💬 Telegram
-                </a>
-                <a href="https://github.com/Paminabea" class="contact-link">
-                    🐙 GitHub
-                </a>
-            </div>
-            
-            <div style="margin-top: 30px; text-align: center;">
-                <a href="mailto:paminabea@gmail.com" class="btn" style="font-size: 1.1em; padding: 15px 40px;">
-                    ✉️ Написать письмо
-                </a>
-            </div>
-        </section>
-        
-        <!-- Footer -->
-        <footer>
-            <p>© 2024 Сергей (Paminabea). Все права защищены.</p>
-            <p>GitHub: <a href="https://github.com/Paminabea">github.com/Paminabea</a></p>
-            <p style="margin-top: 10px; font-size: 0.9em;">Сделано с ❤️ и помощью ИИ</p>
-        </footer>
+<body class="noise gradient-bg min-h-screen">
+
+    <!-- Cursor Glow Effect -->
+    <div class="cursor-glow hidden lg:block" id="cursorGlow"></div>
+
+    <!-- Background Orbs -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <div class="orb w-96 h-96 bg-brand-600/20 top-[-10%] left-[-5%] animate-float"></div>
+        <div class="orb w-80 h-80 bg-brand-400/10 top-[40%] right-[-10%] animate-float-delayed"></div>
+        <div class="orb w-64 h-64 bg-indigo-600/15 bottom-[-5%] left-[30%] animate-float-slow"></div>
+        <div class="orb w-48 h-48 bg-purple-500/10 top-[20%] left-[50%] animate-float-delayed"></div>
     </div>
-</body>
-</html>
+
+    <!-- Grid Pattern Overlay -->
+    <div class="fixed inset-0 grid-pattern pointer-events-none" aria-hidden="true"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass" role="navigation" aria-label="Главная навигация">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group" aria-label="На главную">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center text-white font-bold text-lg group-hover:scale-110 transition-transform duration-300">
+                    P
+                </div>
+                <span class="text-lg font-semibold text-white/90 group-hover:text-white transition-colors">
+                    paminabea
+                </span>
+            </a>
+
+            <!-- Nav Links -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#projects" class="text-sm text-white/50 hover:text-white/90 transition-colors duration-300 link-hover">Проекты</a>
+                <a href="#about" class="text-sm text-white/50 hover:text-white/90 transition-colors duration-300 link-hover">Обо мне</a>
+                <a href="#contact" class="text-sm text-white/50 hover:text-white/90 transition-colors duration-300 link-hover">Контакты</a>
+            </div>
+
+            <!-- Status Badge -->
+            <div class="flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs text-white/50">
+                <span class="status-dot"></span>
+                <span class="hidden sm:inline">Открыт для проектов</span>
+                <span class="sm:hidden">Online</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="relative z-10">
+
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center justify-center px-6 pt-20" id="hero">
+            <div class="max-w-4xl mx-auto text-center">
+
+                <!-- Greeting -->
+                <div class="animate-fade-up mb-6">
+                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-brand-300 font-mono">
+                        <span class="text-brand-400">&#47;&#47;</span> привет, мир
+                    </span>
+                </div>
+
+                <!-- Main Heading -->
+                <h1 class="animate-fade-up-delayed text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6">
+                    <span class="text-white/90">Создаю</span>
+                    <br>
+                    <span class="bg-gradient-to-r from-brand-300 via-brand-400 to-indigo-400 bg-clip-text text-transparent glow-text">
+                        ИИ-продукты
+                    </span>
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="animate-fade-up-delayed-2 text-lg sm:text-xl text-white/40 max-w-2xl mx-auto mb-10 leading-relaxed">
+                    Я вайбкодер из России. Создаю умных Telegram-ботов и полезные Android-приложения, используя силу нейросетей. От идеи до релиза.
+                </p>
+
+                <!-- CTA Buttons -->
+                <div class="animate-fade-up-delayed-3 flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#projects" class="btn-primary px-8 py-3.5 rounded-xl text-white font-medium text-sm tracking-wide">
+                        Смотреть проекты
+                    </a>
+                    <a href="#contact" class="btn-ghost px-8 py-3.5 rounded-xl text-white/70 font-medium text-sm tracking-wide">
+                        Связаться со мной
+                    </a>
+                </div>
+
+                <!-- Scroll Indicator -->
+                <div class="animate-fade-up-delayed-3 mt-20 flex flex-col items-center gap-2 text-white/20">
+                    <span class="text-xs font-mono tracking-widest uppercase">Scroll</span>
+                    <div class="w-px h-12 bg-gradient-to-b from-white/20 to-transparent animate-pulse-soft"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Divider -->
+        <div class="section-divider max-w-4xl mx-auto"></div>
+
+        <!-- Projects Section -->
+        <section class="py-24 px-6" id="projects">
+            <div class="max-w-6xl mx-auto">
+
+                <!-- Section Header -->
+                <div class="text-center mb-16">
+                    <span class="font-mono text-sm text-brand-400 mb-4 block">01 / проекты</span>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white/90 mb-4">
+                        Мои работы
+                    </h2>
+                    <p class="text-white/40 max-w-lg mx-auto">
+                        Подборка проектов, над которыми я работаю. Новые проекты добавляются регулярно.
+                    </p>
+                </div>
+
+                <!-- Project Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                    <!-- Project Card 1 (RetroCamera) -->
+                    <article class="glass-card rounded-2xl p-6 shimmer group flex flex-col">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-brand-500/10 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                            </div>
+                            <span class="tag px-3 py-1 rounded-full text-xs text-green-400 font-mono">Доступно</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-white/90 mb-2 group-hover:text-brand-300 transition-colors">
+                            RetroCamV8
+                        </h3>
+                        <p class="text-sm text-white/40 mb-4 leading-relaxed flex-grow">
+                            Android-приложение для стилизации фотографий под старые плёночные камеры. Ретро-фильтры, лоу-фай эффекты и симуляция советских объективов.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-5">
+                            <span class="tag px-2.5 py-1 rounded-md text-xs text-white/50">Android</span>
+                            <span class="tag px-2.5 py-1 rounded-md text-xs text-white/50">Kotlin</span>
+                            <span class="tag px-2.5 py-1 rounded-md text-xs text-white/50">Photo</span>
+                        </div>
+                        <!-- Кнопки -->
+                        <div class="flex items-center gap-3 mt-auto">
+                            <a href="https://github.com/Paminabea/retrocamera-app/releases/download/v1.0.0/RetroCamera.apk" class="btn-primary px-4 py-2 rounded-lg text-white font-medium text-xs tracking-wide inline-flex items-center gap-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                                Скачать APK
+                            </a>
+                            <a href="https://github.com/Paminabea/retrocamera-app" class="text-xs text-white/40 hover:text-white/80 transition-colors link-hover">GitHub</a>
+                        </div>
+                    </article>
+
+                    <!-- Project Card 2 -->
+                    <article class="glass-card rounded-2xl p-6 shimmer group">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                                </svg>
+                            </div>
+                            <span class="tag px-3 py-1 rounded-full text-xs text-brand-300 font-mono">В разработке</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-white/90 mb-2 group-hover:text-indigo-300 transition-colors">
+                            AI Telegram Bot
+                        </h3>
+                        <p class="text-sm text-white/40 mb-4 leading-relaxed">
+                            Умный помощник для Telegram, использующий современные LLM-модели для генерации текста и ответов на вопросы.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag px-2.5 py-1 rounded-md text-xs text-white/50">Python</span>
+                            <span class="tag px-2.5 py-1 rounded-md text-xs text-white/50">OpenAI API</span>
+                        </div>
+                    </article>
+
+                    <!-- Project Card 3 -->
+                    <article class="glass-card rounded-2xl p-6 shimmer group">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                                </svg>
+                            </div>
+                            <span class="tag px-3 py-1 rounded-full text-xs text-brand-300 font-mono">В разработке</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-white/90 mb-2 group-hover:text-purple-300 transition-colors">
+                            VK / WhatsApp Боты
+                        </h3>
+                        <p class="text-sm text-white/40 mb-4 leading-relaxed">
+                            Серия ботов для автоматизации общения и бизнес-процессов в популярных мессенджерах.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag px-2.5 py-1 rounded-md text-xs text-white/50">API</span>
+                            <span class="tag px-2.5 py-1 rounded-md text-xs text-white/50">Automation</span>
+                        </div>
+                    </article>
+
+                    <!-- Project Card 4 - Placeholder -->
+                    <article class="glass-card rounded-2xl p-6 group border-dashed !border-white/10 flex flex-col items-center justify-center text-center min-h-[220px]">
+                        <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-4 group-hover:bg-brand-500/10 transition-colors">
+                            <svg class="w-6 h-6 text-white/30 group-hover:text-brand-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"/>
+                            </svg>
+                        </div>
+                        <p class="text-sm text-white/30 group-hover:text-white/50 transition-colors">
+                            Скоро будет новый проект...
+                        </p>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Divider -->
+        <div class="section-divider max-w-4xl mx-auto"></div>
+
+        <!-- About Section -->
+        <section class="py-24 px-6" id="about">
+            <div class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+
+                    <!-- Left: Text -->
+                    <div>
+                        <span class="font-mono text-sm text-brand-400 mb-4 block">02 / обо мне</span>
+                        <h2 class="text-3xl sm:text-4xl font-bold text-white/90 mb-6">
+                            Немного о себе
+                        </h2>
+                        <p class="text-white/40 leading-relaxed mb-4">
+                            Привет! Я — <span class="text-white/70 font-medium">Paminabea</span>. Вайбкодер из России. Мой подход — использовать современные ИИ-инструменты для быстрого создания работающих продуктов.
+                        </p>
+                        <p class="text-white/40 leading-relaxed mb-6">
+                            У меня есть опыт разработки ИИ-ботов для Telegram, VK и WhatsApp, а также создания мобильных приложений для Android. Все мои проекты доступны для скачивания.
+                        </p>
+
+                        <!-- Skills -->
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag px-3 py-1.5 rounded-lg text-xs text-white/60 font-mono">Python</span>
+                            <span class="tag px-3 py-1.5 rounded-lg text-xs text-white/60 font-mono">AI / Prompting</span>
+                            <span class="tag px-3 py-1.5 rounded-lg text-xs text-white/60 font-mono">Android</span>
+                            <span class="tag px-3 py-1.5 rounded-lg text-xs text-white/60 font-mono">Telegram Bots</span>
+                            <span class="tag px-3 py-1.5 rounded-lg text-xs text-white/60 font-mono">VK Bots</span>
+                        </div>
+                    </div>
+
+                    <!-- Right: Stats / Info Card -->
+                    <div class="glass-card rounded-2xl p-8">
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-brand-500/10 flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-5 h-5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-white/30 font-mono uppercase tracking-wider">Локация</p>
+                                    <p class="text-sm text-white/70">Москва, Россия</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center flex-shrink-0">
+                                    <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-white/30 font-mono uppercase tracking-wider">Деятельность</p>
+                                    <p class="text-sm text-white/70">
