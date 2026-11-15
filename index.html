@@ -327,17 +327,56 @@ transition: all 0.3s ease;
 background: rgba(139, 92, 246, 0.2);
 border-color: rgba(139, 92, 246, 0.4);
 }
+/* ===== NEW: per-project accent colors (чтобы страница не сливалась в один цвет) ===== */
+/* Colored strip on top of each card */
+.card-strip {
+height: 4px;
+margin: -1.5rem -1.5rem 1.25rem;
+border-radius: 1rem 1rem 0 0;
+}
+/* Card hover glow per accent */
+.glass-card.accent-amber:hover { border-color: rgba(245, 158, 11, 0.45); box-shadow: 0 20px 60px rgba(245, 158, 11, 0.16); }
+.glass-card.accent-cyan:hover { border-color: rgba(34, 211, 238, 0.45); box-shadow: 0 20px 60px rgba(34, 211, 238, 0.16); }
+.glass-card.accent-emerald:hover { border-color: rgba(16, 185, 129, 0.45); box-shadow: 0 20px 60px rgba(16, 185, 129, 0.16); }
+.glass-card.accent-fuchsia:hover { border-color: rgba(217, 70, 239, 0.45); box-shadow: 0 20px 60px rgba(217, 70, 239, 0.16); }
+/* Colored primary buttons */
+.btn-amber { background: linear-gradient(135deg, #f59e0b, #ea580c); }
+.btn-amber:hover { box-shadow: 0 10px 40px rgba(245, 158, 11, 0.35); }
+.btn-cyan { background: linear-gradient(135deg, #06b6d4, #2563eb); }
+.btn-cyan:hover { box-shadow: 0 10px 40px rgba(6, 182, 212, 0.35); }
+.btn-emerald { background: linear-gradient(135deg, #10b981, #0d9488); }
+.btn-emerald:hover { box-shadow: 0 10px 40px rgba(16, 185, 129, 0.35); }
+.btn-fuchsia { background: linear-gradient(135deg, #d946ef, #7c3aed); }
+.btn-fuchsia:hover { box-shadow: 0 10px 40px rgba(217, 70, 239, 0.35); }
+/* Colored ghost buttons */
+.btn-ghost.ghost-amber { border-color: rgba(245, 158, 11, 0.35); }
+.btn-ghost.ghost-amber:hover { border-color: rgba(245, 158, 11, 0.7); background: rgba(245, 158, 11, 0.12); }
+.btn-ghost.ghost-cyan { border-color: rgba(34, 211, 238, 0.35); }
+.btn-ghost.ghost-cyan:hover { border-color: rgba(34, 211, 238, 0.7); background: rgba(34, 211, 238, 0.12); }
+.btn-ghost.ghost-emerald { border-color: rgba(16, 185, 129, 0.35); }
+.btn-ghost.ghost-emerald:hover { border-color: rgba(16, 185, 129, 0.7); background: rgba(16, 185, 129, 0.12); }
+.btn-ghost.ghost-fuchsia { border-color: rgba(217, 70, 239, 0.35); }
+.btn-ghost.ghost-fuchsia:hover { border-color: rgba(217, 70, 239, 0.7); background: rgba(217, 70, 239, 0.12); }
+/* Colored tags */
+.tag-amber { background: rgba(245, 158, 11, 0.12); border-color: rgba(245, 158, 11, 0.35); color: #fbbf24; }
+.tag-amber:hover { background: rgba(245, 158, 11, 0.22); border-color: rgba(245, 158, 11, 0.55); }
+.tag-cyan { background: rgba(34, 211, 238, 0.12); border-color: rgba(34, 211, 238, 0.35); color: #67e8f9; }
+.tag-cyan:hover { background: rgba(34, 211, 238, 0.22); border-color: rgba(34, 211, 238, 0.55); }
+.tag-emerald { background: rgba(16, 185, 129, 0.12); border-color: rgba(16, 185, 129, 0.35); color: #6ee7b7; }
+.tag-emerald:hover { background: rgba(16, 185, 129, 0.22); border-color: rgba(16, 185, 129, 0.55); }
+.tag-fuchsia { background: rgba(217, 70, 239, 0.12); border-color: rgba(217, 70, 239, 0.35); color: #f0abfc; }
+.tag-fuchsia:hover { background: rgba(217, 70, 239, 0.22); border-color: rgba(217, 70, 239, 0.55); }
 </style>
 </head>
 <body class="noise gradient-bg min-h-screen">
 <!-- Cursor Glow Effect -->
 <div class="cursor-glow hidden lg:block" id="cursorGlow"></div>
-<!-- Background Orbs -->
+<!-- Background Orbs (разноцветные, чтобы фон не был单调ным) -->
 <div class="fixed inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
 <div class="orb w-96 h-96 bg-brand-600/20 top-[-10%] left-[-5%] animate-float"></div>
-<div class="orb w-80 h-80 bg-brand-400/10 top-[40%] right-[-10%] animate-float-delayed"></div>
-<div class="orb w-64 h-64 bg-indigo-600/15 bottom-[-5%] left-[30%] animate-float-slow"></div>
-<div class="orb w-48 h-48 bg-purple-500/10 top-[20%] left-[50%] animate-float-delayed"></div>
+<div class="orb w-80 h-80 bg-cyan-500/10 top-[40%] right-[-10%] animate-float-delayed"></div>
+<div class="orb w-64 h-64 bg-emerald-500/10 bottom-[-5%] left-[30%] animate-float-slow"></div>
+<div class="orb w-48 h-48 bg-amber-500/10 top-[20%] left-[50%] animate-float-delayed"></div>
 </div>
 <!-- Grid Pattern Overlay -->
 <div class="fixed inset-0 grid-pattern pointer-events-none" aria-hidden="true"></div>
@@ -382,7 +421,7 @@ paminabea
 <h1 class="animate-fade-up-delayed text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6">
 <span class="text-white/90">Создаю</span>
 <br>
-<span class="bg-gradient-to-r from-brand-300 via-brand-400 to-indigo-400 bg-clip-text text-transparent glow-text">
+<span class="bg-gradient-to-r from-amber-300 via-brand-400 to-cyan-400 bg-clip-text text-transparent glow-text">
 цифровые миры
 </span>
 </h1>
@@ -419,43 +458,45 @@ paminabea
 Мои работы
 </h2>
 <p class="text-white/40 max-w-lg mx-auto">
-Подборка проектов, над которыми я работаю. Новые проекты добавляются регулярно.
+Подборка проектов, над которыми я работаю. Новые проекты добавляются регулярно.<br>
+<span class="text-white/30 text-sm">A selection of my projects. New ones are added regularly.</span>
 </p>
 </div>
 <!-- Project Cards Grid -->
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-<!-- Project Card 1 - RetroCamV8 -->
-<article class="glass-card rounded-2xl p-6 shimmer group">
+<!-- Project Card 1 - RetroCamV8 (amber / retro warm) -->
+<article class="glass-card accent-amber rounded-2xl p-6 shimmer group">
+<div class="card-strip bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500"></div>
 <div class="flex items-center justify-between mb-4">
-<div class="w-10 h-10 rounded-lg bg-brand-500/10 flex items-center justify-center">
-<svg class="w-5 h-5 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+<div class="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center">
+<svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
 </svg>
 </div>
-<span class="tag px-3 py-1 rounded-full text-xs text-brand-300 font-mono">Готово ✓</span>
+<span class="tag tag-amber px-3 py-1 rounded-full text-xs font-mono">Готово ✓</span>
 </div>
-<h3 class="text-lg font-semibold text-white/90 mb-2 group-hover:text-brand-300 transition-colors">
+<h3 class="text-lg font-semibold text-white/90 mb-2 group-hover:text-amber-300 transition-colors">
 📸 RetroCamV8
 </h3>
 <p class="text-sm text-white/40 mb-4 leading-relaxed">
-🇷🇺 Профессиональное приложение для создания атмосферных ретро-фотографий. Плёночные фильтры, объективы Индустар/Гелиос, редактор с настройкой зернистости и утечек света.<br>
-🇧 Professional app for creating atmospheric retro photos. Film filters, Industar/Helios lenses, editor with grain and light leaks adjustments.
+🇷🇺 Ретро-камера с плёночными фильтрами (1960–2000, LOMO, NES), объективами Индустар/Гелиос и редактором: зерно, виньетка, утечки света.<br>
+🇬🇧 Retro camera with film filters (1960–2000, LOMO, NES), Industar/Helios lenses and an editor: grain, vignette, light leaks.
 </p>
 <div class="flex flex-wrap gap-2 mb-4">
-<span class="tag px-2.5 py-1 rounded-md text-xs text-white/50">Android</span>
-<span class="tag px-2.5 py-1 rounded-md text-xs text-white/50">HTML5</span>
-<span class="tag px-2.5 py-1 rounded-md text-xs text-white/50">JavaScript</span>
-<span class="tag px-2.5 py-1 rounded-md text-xs text-white/50">APK</span>
+<span class="tag tag-amber px-2.5 py-1 rounded-md text-xs">Android</span>
+<span class="tag tag-amber px-2.5 py-1 rounded-md text-xs">HTML5</span>
+<span class="tag tag-amber px-2.5 py-1 rounded-md text-xs">JavaScript</span>
+<span class="tag tag-amber px-2.5 py-1 rounded-md text-xs">APK</span>
 </div>
 <div class="flex gap-2">
-<a href="https://github.com/Paminabea/retrocam-app/releases/download/v1.0.0/RetroCamera.apk" class="btn-primary px-4 py-2 rounded-lg text-white text-xs font-medium inline-flex items-center gap-1" target="_blank" rel="noopener noreferrer">
+<a href="https://github.com/Paminabea/retrocamera-app/releases/download/v1.0.0/RetroCamera.apk" class="btn-primary btn-amber px-4 py-2 rounded-lg text-white text-xs font-medium inline-flex items-center gap-1" target="_blank" rel="noopener noreferrer">
 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
 </svg>
 Скачать APK
 </a>
-<a href="https://github.com/Paminabea/retrocam-app" class="btn-ghost px-4 py-2 rounded-lg text-white/70 text-xs font-medium inline-flex items-center gap-1" target="_blank" rel="noopener noreferrer">
+<a href="https://github.com/Paminabea/retrocamera-app" class="btn-ghost ghost-amber px-4 py-2 rounded-lg text-white/70 text-xs font-medium inline-flex items-center gap-1" target="_blank" rel="noopener noreferrer">
 <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
 </svg>
@@ -463,36 +504,38 @@ GitHub
 </a>
 </div>
 </article>
-<!-- Project Card 2 - Starshift -->
-<article class="glass-card rounded-2xl p-6 shimmer group">
+<!-- Project Card 2 - Starshift (cyan / space) -->
+<article class="glass-card accent-cyan rounded-2xl p-6 shimmer group">
+<div class="card-strip bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-600"></div>
 <div class="flex items-center justify-between mb-4">
-<div class="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center">
-<svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+<div class="w-10 h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center">
+<svg class="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
 </svg>
 </div>
-<span class="tag px-3 py-1 rounded-full text-xs text-brand-300 font-mono">Готово ✓</span>
+<span class="tag tag-cyan px-3 py-1 rounded-full text-xs font-mono">v1.3 ✓</span>
 </div>
-<h3 class="text-lg font-semibold text-white/90 mb-2 group-hover:text-indigo-300 transition-colors">
+<h3 class="text-lg font-semibold text-white/90 mb-2 group-hover:text-cyan-300 transition-colors">
 🚀 Starshift
 </h3>
 <p class="text-sm text-white/40 mb-4 leading-relaxed">
-🇷🇺 Космическая аркада с пиксельной эволюцией и системой прогресса. Развивайся от простого корабля до галактического флота.<br>
-🇬🇧 Space arcade game with pixel art evolution and a progression system.
+🇷🇺 Космическая аркада: два режима (кампания и выживание), прокачка корабля и пилота, пиксельная графика. Полностью офлайн, без рекламы и доната.<br>
+🇬🇧 Space arcade: two modes (campaign & survival), ship and pilot upgrades, pixel art. Fully offline, no ads, no pay-to-win.
 </p>
 <div class="flex flex-wrap gap-2 mb-4">
-<span class="tag px-2.5 py-1 rounded-md text-xs text-white/50">HTML5</span>
-<span class="tag px-2.5 py-1 rounded-md text-xs text-white/50">Canvas</span>
-<span class="tag px-2.5 py-1 rounded-md text-xs text-white/50">Game</span>
+<span class="tag tag-cyan px-2.5 py-1 rounded-md text-xs">Android</span>
+<span class="tag tag-cyan px-2.5 py-1 rounded-md text-xs">HTML5 Canvas</span>
+<span class="tag tag-cyan px-2.5 py-1 rounded-md text-xs">Game</span>
+<span class="tag tag-cyan px-2.5 py-1 rounded-md text-xs">Offline</span>
 </div>
 <div class="flex gap-2">
-<a href="#" class="btn-primary px-4 py-2 rounded-lg text-white text-xs font-medium inline-flex items-center gap-1">
+<a href="https://github.com/Paminabea/Starshift-app/releases/download/v1.3/StarShift_V_1_3.apk" class="btn-primary btn-cyan px-4 py-2 rounded-lg text-white text-xs font-medium inline-flex items-center gap-1" target="_blank" rel="noopener noreferrer">
 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
 </svg>
 Скачать APK
 </a>
-<a href="#" class="btn-ghost px-4 py-2 rounded-lg text-white/70 text-xs font-medium inline-flex items-center gap-1">
+<a href="https://github.com/Paminabea/Starshift-app" class="btn-ghost ghost-cyan px-4 py-2 rounded-lg text-white/70 text-xs font-medium inline-flex items-center gap-1" target="_blank" rel="noopener noreferrer">
 <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
 </svg>
@@ -500,35 +543,38 @@ GitHub
 </a>
 </div>
 </article>
-<!-- Project Card 3 - Planner -->
-<article class="glass-card rounded-2xl p-6 shimmer group">
+<!-- Project Card 3 - PlannerLife (emerald / productivity) -->
+<article class="glass-card accent-emerald rounded-2xl p-6 shimmer group">
+<div class="card-strip bg-gradient-to-r from-emerald-400 via-teal-500 to-green-600"></div>
 <div class="flex items-center justify-between mb-4">
-<div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center">
-<svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+<div class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center">
+<svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
 </svg>
 </div>
-<span class="tag px-3 py-1 rounded-full text-xs text-brand-300 font-mono">Готово ✓</span>
+<span class="tag tag-emerald px-3 py-1 rounded-full text-xs font-mono">Готово ✓</span>
 </div>
-<h3 class="text-lg font-semibold text-white/90 mb-2 group-hover:text-purple-300 transition-colors">
-📅 Планировщик
+<h3 class="text-lg font-semibold text-white/90 mb-2 group-hover:text-emerald-300 transition-colors">
+📅 PlannerLife
 </h3>
 <p class="text-sm text-white/40 mb-4 leading-relaxed">
-🇷 Мощный органайзер с календарём, аудио-заметками, трекером привычек и калькулятором.<br>
-🇬🇧 Powerful organizer with a calendar, audio notes, and a habit tracker.
+🇷🇺 Органайзер «всё в одном»: календарь, заметки и аудио-заметки, трекер привычек и калькулятор. Прогресс сохраняется автоматически.<br>
+🇬🇧 All-in-one organizer: calendar, notes & audio notes, habit tracker and calculator. Progress saves automatically.
 </p>
 <div class="flex flex-wrap gap-2 mb-4">
-<span class="tag px-2.5 py-1 rounded-md text-xs text-white/50">HTML5</span>
-<span class="tag px-2.5 py-1 rounded-md text-xs text-white/50">Productivity</span>
+<span class="tag tag-emerald px-2.5 py-1 rounded-md text-xs">Android</span>
+<span class="tag tag-emerald px-2.5 py-1 rounded-md text-xs">HTML5</span>
+<span class="tag tag-emerald px-2.5 py-1 rounded-md text-xs">Productivity</span>
+<span class="tag tag-emerald px-2.5 py-1 rounded-md text-xs">APK</span>
 </div>
 <div class="flex gap-2">
-<a href="#" class="btn-primary px-4 py-2 rounded-lg text-white text-xs font-medium inline-flex items-center gap-1">
+<a href="https://github.com/Paminabea/plannerlife-app/releases/download/v1.0.0/PlannerLife.apk" class="btn-primary btn-emerald px-4 py-2 rounded-lg text-white text-xs font-medium inline-flex items-center gap-1" target="_blank" rel="noopener noreferrer">
 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
 </svg>
 Скачать APK
 </a>
-<a href="#" class="btn-ghost px-4 py-2 rounded-lg text-white/70 text-xs font-medium inline-flex items-center gap-1">
+<a href="https://github.com/Paminabea/plannerlife-app" class="btn-ghost ghost-emerald px-4 py-2 rounded-lg text-white/70 text-xs font-medium inline-flex items-center gap-1" target="_blank" rel="noopener noreferrer">
 <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
 </svg>
@@ -536,36 +582,50 @@ GitHub
 </a>
 </div>
 </article>
-<!-- Project Card 4 - Telegram Bot -->
-<article class="glass-card rounded-2xl p-6 shimmer group">
+<!-- Project Card 4 - Telegram AiRu Bot (fuchsia / AI) -->
+<article class="glass-card accent-fuchsia rounded-2xl p-6 shimmer group">
+<div class="card-strip bg-gradient-to-r from-fuchsia-500 via-purple-500 to-brand-600"></div>
 <div class="flex items-center justify-between mb-4">
-<div class="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center">
-<svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+<div class="w-10 h-10 rounded-lg bg-fuchsia-500/10 flex items-center justify-center">
+<svg class="w-5 h-5 text-fuchsia-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
 </svg>
 </div>
-<span class="tag px-3 py-1 rounded-full text-xs text-brand-300 font-mono">Готово ✓</span>
+<span class="tag tag-fuchsia px-3 py-1 rounded-full text-xs font-mono">Готово ✓</span>
 </div>
-<h3 class="text-lg font-semibold text-white/90 mb-2 group-hover:text-green-300 transition-colors">
- Telegram AiRu Bot
+<h3 class="text-lg font-semibold text-white/90 mb-2 group-hover:text-fuchsia-300 transition-colors">
+🤖 Telegram AiRu Bot
 </h3>
 <p class="text-sm text-white/40 mb-4 leading-relaxed">
-🇷🇺 Многофункциональный бот с интеграцией ИИ (Groq/OpenRouter), админ-панелью и системой заказов.<br>
-🇬🇧 Multifunctional bot with AI integration (Groq/OpenRouter), admin panel, and order management.
+🇷🇺 Многофункциональный бот с ИИ-ассистентом (Groq/OpenRouter), админ-панелью и системой заказов с фоновой проверкой.<br>
+🇬🇧 Multifunctional bot with an AI assistant (Groq/OpenRouter), admin panel and order system with background checks.
 </p>
 <div class="flex flex-wrap gap-2 mb-4">
-<span class="tag px-2.5 py-1 rounded-md text-xs text-white/50">Python</span>
-<span class="tag px-2.5 py-1 rounded-md text-xs text-white/50">aiogram</span>
-<span class="tag px-2.5 py-1 rounded-md text-xs text-white/50">AI</span>
+<span class="tag tag-fuchsia px-2.5 py-1 rounded-md text-xs">Python</span>
+<span class="tag tag-fuchsia px-2.5 py-1 rounded-md text-xs">python-telegram-bot</span>
+<span class="tag tag-fuchsia px-2.5 py-1 rounded-md text-xs">AI</span>
+<span class="tag tag-fuchsia px-2.5 py-1 rounded-md text-xs">asyncio</span>
 </div>
 <div class="flex gap-2">
-<a href="https://github.com/Paminabea/tg" class="btn-ghost px-4 py-2 rounded-lg text-white/70 text-xs font-medium inline-flex items-center gap-1" target="_blank" rel="noopener noreferrer">
+<a href="https://github.com/Paminabea/tg" class="btn-ghost ghost-fuchsia px-4 py-2 rounded-lg text-white/70 text-xs font-medium inline-flex items-center gap-1" target="_blank" rel="noopener noreferrer">
 <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
 </svg>
 GitHub
 </a>
 </div>
+</article>
+<!-- Project Card 5 - Placeholder -->
+<article class="glass-card rounded-2xl p-6 group border-dashed !border-white/10 flex flex-col items-center justify-center text-center min-h-[220px]">
+<div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center mb-4 group-hover:bg-brand-500/10 transition-colors">
+<svg class="w-6 h-6 text-white/30 group-hover:text-brand-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"/>
+</svg>
+</div>
+<p class="text-sm text-white/30 group-hover:text-white/50 transition-colors">
+Скоро будет новый проект...<br>
+<span class="text-xs">New project coming soon...</span>
+</p>
 </article>
 </div>
 </div>
@@ -583,25 +643,26 @@ GitHub
 Немного о себе
 </h2>
 <p class="text-white/40 leading-relaxed mb-4">
-🇷🇺 Привет! Я — <span class="text-white/70 font-medium">Сергей (Paminabea)</span> из Москвы. Self-taught разработчик, создающий мобильные приложения и Telegram-ботов с использованием современных AI-инструментов.
+🇷 Привет! Я — <span class="text-white/70 font-medium">Сергей (Paminabea)</span> из Москвы. Self-taught разработчик, создающий мобильные приложения и Telegram-ботов с использованием современных AI-инструментов.
 </p>
 <p class="text-white/40 leading-relaxed mb-4">
-🇬 Hi! I'm <span class="text-white/70 font-medium">Sergey (Paminabea)</span> from Moscow. Self-taught developer building mobile apps and Telegram bots using modern AI tools.
+🇬🇧 Hi! I'm <span class="text-white/70 font-medium">Sergey (Paminabea)</span> from Moscow. Self-taught developer building mobile apps and Telegram bots using modern AI tools.
 </p>
 <p class="text-white/40 leading-relaxed mb-6">
-<strong>Ищу полностью удалённую работу</strong>, где смогу применять свои навыки и развиваться как разработчик.
+<strong>Ищу полностью удалённую работу</strong>, где смогу применять свои навыки и развиваться как разработчик.<br>
+<span class="text-white/30 text-sm">Looking for fully remote work where I can apply my skills and grow as a developer.</span>
 </p>
 <!-- Skills -->
 <div class="flex flex-wrap gap-2">
-<span class="tag px-3 py-1.5 rounded-lg text-xs text-white/60 font-mono">Python</span>
-<span class="tag px-3 py-1.5 rounded-lg text-xs text-white/60 font-mono">JavaScript</span>
-<span class="tag px-3 py-1.5 rounded-lg text-xs text-white/60 font-mono">HTML5/CSS</span>
-<span class="tag px-3 py-1.5 rounded-lg text-xs text-white/60 font-mono">Telegram Bot API</span>
-<span class="tag px-3 py-1.5 rounded-lg text-xs text-white/60 font-mono">Git</span>
-<span class="tag px-3 py-1.5 rounded-lg text-xs text-white/60 font-mono">Linux</span>
-<span class="tag px-3 py-1.5 rounded-lg text-xs text-white/60 font-mono">AI Integration</span>
-<span class="tag px-3 py-1.5 rounded-lg text-xs text-white/60 font-mono">Groq API</span>
-<span class="tag px-3 py-1.5 rounded-lg text-xs text-white/60 font-mono">OpenRouter</span>
+<span class="tag tag-amber px-3 py-1.5 rounded-lg text-xs font-mono">Python</span>
+<span class="tag tag-cyan px-3 py-1.5 rounded-lg text-xs font-mono">JavaScript</span>
+<span class="tag tag-emerald px-3 py-1.5 rounded-lg text-xs font-mono">HTML5/CSS</span>
+<span class="tag tag-cyan px-3 py-1.5 rounded-lg text-xs font-mono">Telegram Bot API</span>
+<span class="tag tag-amber px-3 py-1.5 rounded-lg text-xs font-mono">Git</span>
+<span class="tag tag-emerald px-3 py-1.5 rounded-lg text-xs font-mono">Linux</span>
+<span class="tag tag-fuchsia px-3 py-1.5 rounded-lg text-xs font-mono">AI Integration</span>
+<span class="tag tag-fuchsia px-3 py-1.5 rounded-lg text-xs font-mono">Groq API</span>
+<span class="tag tag-fuchsia px-3 py-1.5 rounded-lg text-xs font-mono">OpenRouter</span>
 </div>
 </div>
 <!-- Right: Stats / Info Card -->
@@ -616,262 +677,3 @@ GitHub
 </div>
 <div>
 <p class="text-xs text-white/30 font-mono uppercase tracking-wider">Локация / Location</p>
-<p class="text-sm text-white/70">Москва, Россия / Moscow, Russia</p>
-</div>
-</div>
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center flex-shrink-0">
-<svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-</svg>
-</div>
-<div>
-<p class="text-xs text-white/30 font-mono uppercase tracking-wider">Деятельность / Focus</p>
-<p class="text-sm text-white/70">Мобильная разработка & Telegram-боты</p>
-</div>
-</div>
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center flex-shrink-0">
-<svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
-</svg>
-</div>
-<div>
-<p class="text-xs text-white/30 font-mono uppercase tracking-wider">Интересы / Interests</p>
-<p class="text-sm text-white/70">AI Integration, Open Source, Automation</p>
-</div>
-</div>
-<div class="pt-4 border-t border-white/5">
-<div class="flex items-center justify-between">
-<span class="text-xs text-white/30 font-mono">Проектов завершено</span>
-<span class="text-2xl font-bold text-brand-400" id="projectCount">4</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Section Divider -->
-<div class="section-divider max-w-4xl mx-auto"></div>
-<!-- Contact Section -->
-<section class="py-24 px-6" id="contact">
-<div class="max-w-2xl mx-auto text-center">
-<span class="font-mono text-sm text-brand-400 mb-4 block">03 / контакты</span>
-<h2 class="text-3xl sm:text-4xl font-bold text-white/90 mb-4">
-Давайте работать вместе
-</h2>
-<p class="text-white/40 mb-10 max-w-md mx-auto">
-Есть идея для проекта или хотите сотрудничать? Напишите мне, и мы обсудим детали.<br>
-Have a project idea or want to collaborate? Write to me and let's discuss the details.
-</p>
-<!-- Contact Links -->
-<div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-<a href="mailto:paminabea@gmail.com" class="btn-primary px-8 py-3.5 rounded-xl text-white font-medium text-sm tracking-wide inline-flex items-center gap-2">
-<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-</svg>
-Написать письмо
-</a>
-<a href="https://github.com/Paminabea" target="_blank" rel="noopener noreferrer" class="btn-ghost px-8 py-3.5 rounded-xl text-white/70 font-medium text-sm tracking-wide inline-flex items-center gap-2">
-<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-</svg>
-GitHub
-</a>
-</div>
-<!-- Social Links -->
-<div class="flex items-center justify-center gap-6">
-<a href="https://t.me/paminabea" target="_blank" rel="noopener noreferrer" class="text-white/20 hover:text-brand-400 transition-colors duration-300" aria-label="Telegram">
-<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-<path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-1.09.49-1.63.46-.59-.017-1.735-.335-2.592-.661-1.062-.404-1.906-.618-1.836-1.22.036-.314.476-.634 1.316-.946 5.18-2.064 8.634-3.472 10.348-4.148.962-.358 2.86-.98 3.43-.98z"/>
-</svg>
-</a>
-<a href="https://github.com/Paminabea" target="_blank" rel="noopener noreferrer" class="text-white/20 hover:text-brand-400 transition-colors duration-300" aria-label="GitHub">
-<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-</svg>
-</a>
-</div>
-</div>
-</section>
-</main>
-<!-- Footer -->
-<footer class="relative z-10 border-t border-white/5">
-<div class="max-w-6xl mx-auto px-6 py-8">
-<div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center text-white font-bold text-sm">
-P
-</div>
-<span class="text-sm text-white/30">
-&copy; <span id="currentYear"></span> Сергей (Paminabea). Все права защищены.
-</span>
-</div>
-<div class="flex items-center gap-4 text-xs text-white/20 font-mono">
-<span>v1.0.0</span>
-<span class="hidden sm:inline">•</span>
-<span class="hidden sm:inline">Сделано с ❤️ и помощью ИИ</span>
-</div>
-</div>
-</div>
-</footer>
-<!-- JavaScript -->
-<script>
-'use strict';
-// ===== Security: Prevent common attacks =====
-(function() {
-// Disable right-click context menu (basic protection)
-document.addEventListener('contextmenu', function(e) {
-e.preventDefault();
-});
-// Prevent drag of images
-document.addEventListener('dragstart', function(e) {
-e.preventDefault();
-});
-// Detect dev tools (basic)
-let devToolsOpen = false;
-const threshold = 160;
-setInterval(function() {
-const widthThreshold = window.outerWidth - window.innerWidth > threshold;
-const heightThreshold = window.outerHeight - window.innerHeight > threshold;
-if (widthThreshold || heightThreshold) {
-if (!devToolsOpen) {
-devToolsOpen = true;
-console.clear();
-console.log('%c⚠️ Внимание!', 'color: #8b5cf6; font-size: 24px; font-weight: bold;');
-console.log('%cНе вставляйте сюда код — это может быть опасно.', 'color: #ef4444; font-size: 14px;');
-}
-} else {
-devToolsOpen = false;
-}
-}, 1000);
-// Prevent text selection on sensitive areas (optional)
-// document.addEventListener('selectstart', function(e) { e.preventDefault(); });
-// Anti-clickjacking: break out of frames
-if (window.top !== window.self) {
-window.top.location = window.self.location;
-}
-// Sanitize URL parameters
-const urlParams = new URLSearchParams(window.location.search);
-for (const [key, value] of urlParams) {
-if (/<script|javascript:|on\w+\s*=/i.test(value)) {
-window.history.replaceState({}, '', window.location.pathname);
-break;
-}
-}
-})();
-// ===== Cursor Glow Effect =====
-(function() {
-const glow = document.getElementById('cursorGlow');
-if (!glow) return;
-let mouseX = 0, mouseY = 0;
-let glowX = 0, glowY = 0;
-document.addEventListener('mousemove', function(e) {
-mouseX = e.clientX;
-mouseY = e.clientY;
-});
-function animateGlow() {
-glowX += (mouseX - glowX) * 0.1;
-glowY += (mouseY - glowY) * 0.1;
-glow.style.left = glowX + 'px';
-glow.style.top = glowY + 'px';
-requestAnimationFrame(animateGlow);
-}
-animateGlow();
-})();
-// ===== Smooth Scroll for Anchor Links =====
-document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-anchor.addEventListener('click', function(e) {
-e.preventDefault();
-const target = document.querySelector(this.getAttribute('href'));
-if (target) {
-target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-});
-});
-// ===== Intersection Observer for Scroll Animations =====
-(function() {
-const observer = new IntersectionObserver(function(entries) {
-entries.forEach(function(entry) {
-if (entry.isIntersecting) {
-entry.target.style.opacity = '1';
-entry.target.style.transform = 'translateY(0)';
-}
-});
-}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-document.querySelectorAll('.glass-card').forEach(function(card) {
-card.style.opacity = '0';
-card.style.transform = 'translateY(20px)';
-card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-observer.observe(card);
-});
-})();
-// ===== Counter Animation =====
-(function() {
-const counter = document.getElementById('projectCount');
-if (!counter) return;
-let counted = false;
-const observer = new IntersectionObserver(function(entries) {
-if (entries[0].isIntersecting && !counted) {
-counted = true;
-let current = 0;
-const target = 4; // Updated to 4 projects
-const duration = 1500;
-const step = duration / target;
-const interval = setInterval(function() {
-current++;
-counter.textContent = current;
-if (current >= target) {
-clearInterval(interval);
-}
-}, step);
-}
-}, { threshold: 0.5 });
-observer.observe(counter);
-})();
-// ===== Dynamic Year =====
-document.getElementById('currentYear').textContent = new Date().getFullYear();
-// ===== Navbar Background on Scroll =====
-(function() {
-const nav = document.querySelector('nav');
-if (!nav) return;
-window.addEventListener('scroll', function() {
-if (window.scrollY > 50) {
-nav.style.background = 'rgba(10, 10, 15, 0.8)';
-nav.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
-} else {
-nav.style.background = 'rgba(255, 255, 255, 0.03)';
-nav.style.borderBottom = '1px solid rgba(255,255,255,0.06)';
-}
-});
-})();
-// ===== Keyboard Navigation =====
-document.addEventListener('keydown', function(e) {
-if (e.key === 'Tab') {
-document.body.classList.add('keyboard-nav');
-}
-});
-document.addEventListener('mousedown', function() {
-document.body.classList.remove('keyboard-nav');
-});
-// ===== Performance: Reduce animations for users who prefer it =====
-if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-document.querySelectorAll('[class*="animate-"]').forEach(function(el) {
-el.style.animation = 'none';
-el.style.opacity = '1';
-el.style.transform = 'none';
-});
-}
-// ===== Console Easter Egg =====
-console.log(
-'%c👋 Привет, разработчик!',
-'color: #8b5cf6; font-size: 18px; font-weight: bold;'
-);
-console.log(
-'%cИнтересно, что ты заглянул сюда. Может, стоит связаться? 😊',
-'color: #a78bfa; font-size: 12px;'
-);
-</script>
-</body>
-</html>
